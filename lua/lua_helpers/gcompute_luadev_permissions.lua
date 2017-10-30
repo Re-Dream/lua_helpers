@@ -118,6 +118,12 @@ function self:GetLanguageEnumerator ()
 end
 
 GCompute.Execution.LocalExecutionService = GCompute.Execution.LocalExecutionService ()
+
+hook.Add("LuaDevIsPlayerAllowed", "mingeban", function(ply)
+	if IsValid(ply) and ply:HasPermission("luadev") then
+		return true
+	end
+end)
 end
 
 if istable(GAMEMODE) then
