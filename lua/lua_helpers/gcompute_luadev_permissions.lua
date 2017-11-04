@@ -124,6 +124,7 @@ hook.Add("LuaDevIsPlayerAllowed", "mingeban", function(ply)
 		return true
 	end
 end)
+
 end
 
 if istable(GAMEMODE) then

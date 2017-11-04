@@ -16,7 +16,6 @@ end
 if CLIENT then
 	net.Receive(tag, function()
 		local str = net.ReadString()
-		if not isstring(str) then return end
 
 		gui.OpenURL(str)
 	end)

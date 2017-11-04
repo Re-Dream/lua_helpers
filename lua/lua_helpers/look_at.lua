@@ -1,5 +1,5 @@
 
-local tag = "LookAt"
+local tag = "look_at"
 
 if CLIENT then
 	local target
@@ -78,7 +78,6 @@ if SERVER then
 			end
 			net.WriteFloat(length)
 		net.Send(self)
-
 	end
 end
 

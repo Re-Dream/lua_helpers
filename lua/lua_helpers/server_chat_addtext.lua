@@ -22,7 +22,6 @@ end
 if CLIENT then
 	net.Receive(tag, function()
 		local tbl = net.ReadTable()
-		if not istable(tbl) then return end
 
 		chat.AddText(unpack(tbl))
 	end)

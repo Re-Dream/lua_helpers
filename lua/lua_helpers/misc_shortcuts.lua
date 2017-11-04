@@ -18,6 +18,7 @@ if CLIENT then
 		msg = msg:gsub("\n", ""):gsub(";", ":"):gsub("\"", "'")
 		cmd("say " .. msg)
 	end
+	say = Say
 elseif SERVER then
 	require("fps")
 	hook.Add("Think", "serverfps", function()
@@ -42,6 +43,7 @@ elseif SERVER then
 		msg = msg:gsub("\n", ""):gsub(";", ":"):gsub("\"", "'")
 		cmd("say " .. msg)
 	end
+	say = Say
 end
 
 function engine.ServerFPS()
