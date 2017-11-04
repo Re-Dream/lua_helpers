@@ -38,7 +38,7 @@ function WebMaterial(name, url)
 		end
 	end
 	local c = cache[name]
-	-- c = (not c or c:IsError()) and fallback or c
-	return c
+	c = (not c or c:IsError()) and fallback or c
+	return c or fallback
 end
 

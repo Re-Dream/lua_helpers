@@ -35,7 +35,7 @@ if CLIENT then
 
 	for n, f in pairs(cams) do
 		crashprotection.Cams[n] = crashprotection.Cams[n] or 0
-		crashprotection.backup[n] = crashprotection.Backup[n] or f
+		crashprotection.Backup[n] = crashprotection.Backup[n] or f
 
 		cam["Start" .. n] = function(...)
 			crashprotection.Cams[n] = crashprotection.Cams[n] + 1
