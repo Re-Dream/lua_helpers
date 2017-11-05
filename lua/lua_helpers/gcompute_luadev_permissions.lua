@@ -1,9 +1,9 @@
 
 -- god damnit knotcake
 
-local function doTheDo()
+local function doTheDo(sys)
 
-if not GCompute or not mingeban then return end
+if sys ~= "GCompute" or not GCompute or not mingeban then return end
 
 local self = {}
 GCompute.Execution.LocalExecutionService = GCompute.MakeConstructor (self, GCompute.Execution.IExecutionService)
@@ -33,6 +33,7 @@ function self:CanCreateExecutionContext (authId, hostId, languageName)
 	   authId ~= GLib.GetServerId () and
 	   authId ~= GLib.GetSystemId () and
 	   (not GCompute.PlayerMonitor:GetUserEntity (authId) or not GCompute.PlayerMonitor:GetUserEntity (authId):GetRank ():HasPermission ("gcompute")) then
+		print("yes")
 		return false, GCompute.ReturnCode.AccessDenied
 	end
 
@@ -128,8 +129,8 @@ end)
 end
 
 if istable(GAMEMODE) then
-	doTheDo()
+	doTheDo("GCompute")
 else
-	hook.Add("Initialize", "gcompute_localexecutionservice_override", doTheDo)
+	hook.Add("GLibSystemLoaded", "gcompute_localexecutionservice_override", doTheDo)
 end
 
