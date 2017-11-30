@@ -24,7 +24,7 @@ elseif SERVER then
 		require("fps") -- this is probably causing heap corruption
 	end
 	hook.Add("Think", "serverfps", function()
-		SetGlobalInt("serverfps", 1 / engine.ServerFrameTime and engine.ServerFrameTime() or engine.RealFrameTime())
+		SetGlobalInt("serverfps", 1 / (engine.ServerFrameTime and engine.ServerFrameTime() or engine.RealFrameTime()))
 	end)
 
 	function cmd(cmd)
