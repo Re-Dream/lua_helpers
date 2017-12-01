@@ -21,12 +21,12 @@ if CLIENT then
 	say = Say
 elseif SERVER then
 	local moduleNeeded = engine.ServerFrameTime and false or true
-	if not moduleNeeded then
+	if moduleNeeded then
 		require("fps") -- this is probably causing heap corruption
 	end
+	local serverFrameTime = moduleNeeded and engine.RealFrameTime or engine.ServerFrameTime
 	hook.Add("Think", "serverfps", function()
-		local frameTime = not moduleNeeded and engine.ServerFrameTime() or engine.RealFrameTime()
-		SetGlobalInt("serverfps", 1 / frameTime)
+		SetGlobalInt("serverfps", 1 / serverFrameTime())
 	end)
 
 	function cmd(cmd)
