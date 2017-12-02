@@ -22,6 +22,9 @@ do
 	end)
 end
 
+do return end
+-- causes issues with starfall
+
 if CLIENT then
 	crashprotection.Cams = crashprotection.Cams or {}
 	crashprotection.Backup = crashprotection.Backup or {}
