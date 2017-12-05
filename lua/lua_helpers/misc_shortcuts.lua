@@ -21,13 +21,19 @@ if CLIENT then
 	say = Say
 elseif SERVER then
 	local moduleNeeded = engine.ServerFrameTime and false or true
-	if moduleNeeded then
-		require("fps") -- this is probably causing heap corruption
+	-- Does engine.ServerFrameTime exist? (Available in dev branch)
+	local ok = moduleNeeded
+	-- If not, try to run the "fps" module.
+	if not ok then
+		ok = pcall(require, "fps") -- this is probably causing heap corruption
 	end
-	local serverFrameTime = moduleNeeded and engine.RealFrameTime or engine.ServerFrameTime
-	hook.Add("Think", "serverfps", function()
-		SetGlobalInt("serverfps", 1 / serverFrameTime())
-	end)
+	-- If that worked, then proceed.
+	if ok then
+		local serverFrameTime = moduleNeeded and engine.RealFrameTime or engine.ServerFrameTime
+		hook.Add("Think", "serverfps", function()
+			SetGlobalInt("serverfps", 1 / serverFrameTime())
+		end)
+	end
 
 	function cmd(cmd)
 		game.ConsoleCommand(cmd .. "\n")
