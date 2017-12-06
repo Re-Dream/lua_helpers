@@ -20,16 +20,15 @@ if CLIENT then
 	end
 	say = Say
 elseif SERVER then
-	local moduleNeeded = engine.ServerFrameTime and false or true
-	-- Does engine.ServerFrameTime exist? (Available in dev branch)
-	local ok = moduleNeeded
-	-- If not, try to run the "fps" module.
-	if not ok then
-		ok = pcall(require, "fps") -- this is probably causing heap corruption
+	local serverFrameTime = engine.ServerFrameTime
+	local ok
+	if not serverFrameTime then
+		ok = pcall(require, "fps")
+		serverFrameTime = engine.RealFrameTime
+	else
+		ok = true
 	end
-	-- If that worked, then proceed.
 	if ok then
-		local serverFrameTime = moduleNeeded and engine.RealFrameTime or engine.ServerFrameTime
 		hook.Add("Think", "serverfps", function()
 			SetGlobalInt("serverfps", 1 / serverFrameTime())
 		end)
