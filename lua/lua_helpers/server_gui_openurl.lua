@@ -17,7 +17,7 @@ if CLIENT then
 	net.Receive(tag, function()
 		local str = net.ReadString()
 
-		gui.OpenURL(str)
+		EasyChat.OpenURL(str)
 	end)
 end
 
