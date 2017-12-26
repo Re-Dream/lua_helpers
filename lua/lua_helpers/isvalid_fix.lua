@@ -1,11 +1,11 @@
 
-function IsValid(var)
-	if not var then return end
-	if isstring(var) then return end
-	if isnumber(var) then return end
-	local isvalid = var.IsValid
+function IsValid(val)
+	if not val then return end
+	if isstring(val) then return end
+	if isnumber(val) then return end
+	local isvalid = val.IsValid
 	if not isvalid then return end
-	return isvalid(var)
+	return isvalid(val)
 end
 
 ValidEntity = IsValid
