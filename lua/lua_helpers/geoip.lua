@@ -16,6 +16,8 @@ if SERVER then
 	function PLAYER:GetCity() return self:GetCountryData().city end
 
 	hook.Add("PlayerInitialSpawn", tag, function(ply)
+		if ply:IsBot() then return end
+
 		ply:SetNWString("country_name", ply:GetCountry())
 		ply:SetNWString("country_code", ply:GetCountryCode())
 		ply:SetNWString("city", ply:GetCity())
